@@ -1,5 +1,3 @@
-// method overloading, boolena operations , type conversions, 
-
 class DataTypes {
     public static void main(String args[]) {
         int myInt = 10;

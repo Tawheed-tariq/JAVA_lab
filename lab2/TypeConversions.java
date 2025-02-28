@@ -1,4 +1,4 @@
-public class TypeConversions {
+class TypeConversions {
     public static void main(String[] args) {
         int intVal = 100;
         double doubleVal = intVal;
@@ -18,5 +18,20 @@ public class TypeConversions {
 
         short shortVal = (short) charVal;
         System.out.println("Explicit conversion from char to short: " + shortVal);
+
+        int intToFloat = 17;
+        float floatVal = intToFloat;
+        System.out.println("Implicit conversion from int to float: "+ floatVal);
+
+        int intToChar = 40;
+        charVal = (char) intToChar;
+        System.out.println("Explicit conversion from int to char: " + charVal);
+
+        float floatToInt = 30.01f;
+        intVal = (int) floatToInt;
+        System.out.println("Explicit conversion from float to int: " + intVal);
+
+        double charToDouble = charVal;
+        System.out.println("Implicit conversion from char to double: " + charToDouble);
     }
 }
