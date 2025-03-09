@@ -1,0 +1,11 @@
+create multiple classes and practice main class placement
+
+start sreating objects and initializing objects
+
+object chaining
+
+constructor overloading
+
+constructor chaining
+
+inheritance
