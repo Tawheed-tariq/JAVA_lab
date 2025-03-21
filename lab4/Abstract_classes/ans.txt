@@ -1,0 +1,10 @@
+In Java, a class cannot be both abstract and final because these two keywords have contradictory meanings:
+
+abstract: This keyword indicates that the class is incomplete and must be subclassed. 
+        It can contain abstract methods (methods without a body) that must be implemented by subclasses.
+
+final: This keyword indicates that the class cannot be subclassed. 
+        It is a complete class, and no other class can extend it.
+
+Since an abstract class is meant to be extended and a final class cannot be extended, combining these two keywords would create a logical contradiction. Therefore, Java does not allow a class to be both abstract and final.
+
