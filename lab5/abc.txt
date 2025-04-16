@@ -1,0 +1,4 @@
+Encapsulation, break Encapsulation
+import Packages
+Interfaces
+Object class --> override clone(), toString(), equals()
