@@ -1,0 +1,11 @@
+1. Stack/ Generic Class using Non generic classes, check type safety in it --- done
+
+2. Create a generic stack/ generic class, create variants such as taking 1 parameter,2 parameters --- done
+
+3. Non generic class with generic method, constructor  --- done
+
+4. Implement Generic interface in generic class  --- done
+
+5. Wild cards, Bounded wild cards and bounded type parameters
+
+6. Implement arrays, methods and Ragged Arrays
