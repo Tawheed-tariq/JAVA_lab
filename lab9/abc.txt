@@ -1,0 +1,12 @@
+ExceptionHandling:
+1. unhandled exceptions.
+2. Handling exceptions using try-catch
+    - try-catch-fianlly
+    - try-finally
+    - multiple exceptions -single catch
+    - try with multiple catches
+    - nested try-catch
+3.user defined exception- a) number out of range b) incorrect choice
+4. use throw to throw and re-throw an exception.
+5. Checked exception: a)declare and handle b) Propagate to JVM.
+6. use return statement in a) try b)catch while having a finally block.

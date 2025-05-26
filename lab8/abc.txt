@@ -1,0 +1,12 @@
+create arralylist, its methods, 
+linked list and its methods and 
+other collection methods
+use Deque interface to implemen your own stack
+inherit generc class?
+
+
+tailset()
+headset()?
+toArray()
+Exception
+Array-->collection
