@@ -1,0 +1,9 @@
+Q1. Create threads using Thread class,override run function
+
+Q2. Use Runnable iterface
+
+Q3. Use various methods of Thread class.
+
+Q4. Create multiple threads for same/different purposes.
+
+Q5. Thread synchronization using Synchronized method and synchronized block.
