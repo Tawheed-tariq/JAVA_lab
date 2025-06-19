@@ -45,6 +45,11 @@ class FirstPart{
             }
         }
 
+/**
+ * Instead of writing directly to file on every write() used by FileWriter,
+ * BufferedWriter is used to write text to the file in a buffered manner.
+ * BufferedWriter first writes to an internal buffer and then writes to the file in larger chunks,
+ */
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file));
@@ -81,6 +86,8 @@ class FirstPart{
                     System.err.println("Failed to close reader: " + e.getMessage());
                 }
             }
+        }else{
+            System.out.println("File does not exist: " + file.getPath());
         }
     }
 

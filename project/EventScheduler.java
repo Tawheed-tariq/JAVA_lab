@@ -135,12 +135,8 @@ public class EventScheduler extends JFrame {
         table = new JTable(model);
         table.setFont(new Font("Arial", Font.PLAIN, 12));
         table.setRowHeight(25);
-        table.setGridColor(new Color(230, 230, 230));
-        table.setSelectionBackground(new Color(225, 245, 254));
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        table.setGridColor(new Color(230, 230, 230)); // light gray for grid lines
+        table.setSelectionBackground(new Color(225, 245, 254)); //light blue for selected cell
 
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBorder(BorderFactory.createTitledBorder("Scheduled Events"));
@@ -150,7 +146,7 @@ public class EventScheduler extends JFrame {
     private JPanel createControlPanel() {
         JPanel panel = createStyledPanel(BACKGROUND);
         JTextField searchField = createStyledTextField();
-        searchField.setPreferredSize(new Dimension(200, 30));
+        searchField.setPreferredSize(new Dimension(200, 32));
         JButton searchBtn = createStyledButton("Search", PRIMARY);
         JButton deleteBtn = createStyledButton("Delete Selected", new Color(244, 67, 54));
         JButton clearBtn = createStyledButton("Clear Search", new Color(158, 158, 158));
