@@ -1,5 +1,9 @@
+// Copyright 2025 Tavaheed Tariq, All rights reserved 
+//  This file is part of the JAVA Theory Project.
+//  Written by Tavaheed Tariq < https://github.com/Tawheed-tariq
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.*;
@@ -10,6 +14,12 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+
+/*
+ * Serializable Interface: It has no methods, but it allows the class to be serialized.
+ * This means instances of this class can be converted into a byte stream, which can then be
+ * saved to a file or sent over a network.
+ */
 
 class Event implements Serializable {
     String title, location, category;
@@ -30,15 +40,25 @@ class Event implements Serializable {
     }
 }
 
+/**
+ * JFrame: provides the basic structure for a window, including the title bar, borders, 
+ * and the ability to close, minimize, and maximize the window.
+
+ * JTable: displays data in a tabular format, allowing for easy viewing and manipulation of data.
+
+ * DefaultTableModel: provides a default implementation of the TableModel interface,
+ * allowing for easy management of the data displayed in a JTable.
+ */
+
 public class EventScheduler extends JFrame {
     private List<Event> events = new ArrayList<>();
     private JTable table;
     private DefaultTableModel model;
     private javax.swing.Timer reminderTimer;
     private static final String FILE = "events.dat";
-    private final Color PRIMARY = new Color(33, 150, 243);
-    private final Color ACCENT = new Color(76, 175, 80);
-    private final Color BACKGROUND = new Color(250, 250, 250);
+    private final Color PRIMARY = new Color(33, 150, 243); //blue
+    private final Color ACCENT = new Color(76, 175, 80); //green
+    private final Color BACKGROUND = new Color(250, 250, 250); //gray
 
     public EventScheduler() {
         initializeUI();
@@ -48,26 +68,21 @@ public class EventScheduler extends JFrame {
     }
 
     private void initializeUI() {
-        setTitle("Event Scheduler Pro");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(900, 650);
-        setLocationRelativeTo(null);
+        setTitle("Event Scheduler by Tawheed");
+        setDefaultCloseOperation(EXIT_ON_CLOSE); // present in javax.swing.JFrame take int as argument : https://www.clear.rice.edu/comp310/JavaResources/frame_close.html
+        setSize(900, 700);
+        setLocationRelativeTo(null);  //enters the window in the center of the screen, if any component is passed, it will be placed in the center of that component
         getContentPane().setBackground(BACKGROUND);
 
-        // Header
         JPanel header = createStyledPanel(PRIMARY);
         header.add(createStyledLabel("Event Scheduler", Font.BOLD, 24, Color.WHITE));
 
-        // Input Panel
         JPanel inputPanel = createInputPanel();
 
-        // Table Panel
         JScrollPane tablePanel = createTablePanel();
 
-        // Control Panel
         JPanel controlPanel = createControlPanel();
 
-        // Layout
         setLayout(new BorderLayout(10, 10));
         add(header, BorderLayout.NORTH);
         add(inputPanel, BorderLayout.WEST);
@@ -87,9 +102,10 @@ public class EventScheduler extends JFrame {
         JTextField dateField = createStyledTextField();
         dateField.setText(LocalDate.now().toString());
         JTextField timeField = createStyledTextField();
-        timeField.setText("12:00");
+        timeField.setText("10:00");
         JTextField locationField = createStyledTextField();
-        JComboBox<String> categoryBox = new JComboBox<>(new String[]{"Work", "Personal", "Meeting", "Other"});
+        locationField.setText("Chattabal, Srinagar");
+        JComboBox<String> categoryBox = new JComboBox<>(new String[]{"Work", "Home", "Other"});
         categoryBox.setFont(new Font("Arial", Font.PLAIN, 12));
         JCheckBox reminderBox = new JCheckBox("Enable Reminder");
         JButton addBtn = createStyledButton("Add Event", ACCENT);
@@ -143,7 +159,7 @@ public class EventScheduler extends JFrame {
         panel.add(searchField);
         panel.add(searchBtn);
         panel.add(clearBtn);
-        panel.add(Box.createHorizontalStrut(20));
+        panel.add(Box.createHorizontalStrut(30));
         panel.add(deleteBtn);
 
         searchBtn.addActionListener(new ActionListener() {
@@ -166,6 +182,10 @@ public class EventScheduler extends JFrame {
         return panel;
     }
 
+/**
+ *  This function creates a JPanel with a label and a field, using BorderLayout for layout management.
+ *  It sets the label at the top and the field in the center, with an EmptyBorder for spacing.
+ */
     private JPanel createFieldPanel(String label, JComponent field) {
         JPanel panel = new JPanel(new BorderLayout(5, 5));
         panel.add(new JLabel(label), BorderLayout.NORTH);
@@ -174,12 +194,19 @@ public class EventScheduler extends JFrame {
         return panel;
     }
 
+/**
+ * This function creates a styled JPanel with a specified background color.
+ * It uses FlowLayout for layout management.
+ */
     private JPanel createStyledPanel(Color bg) {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setBackground(bg);
         return panel;
     }
 
+/**
+ *  This function creates a styled JLabel with specified text, font style, size, and color.
+ */
     private JLabel createStyledLabel(String text, int style, int size, Color color) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", style, size));
@@ -187,6 +214,12 @@ public class EventScheduler extends JFrame {
         return label;
     }
 
+/**
+ *  This function creates a styled JTextField with a specific font and border.
+ *  It uses a compound border to combine a line border with an empty border for padding.
+ *  The line border is set to a light gray color, and the empty border provides padding
+ *  around the text field.
+ */
     private JTextField createStyledTextField() {
         JTextField field = new JTextField();
         field.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -196,6 +229,10 @@ public class EventScheduler extends JFrame {
         return field;
     }
 
+/**
+ *  This function creates a styled JButton with specified text and background color.
+ *  The setFocusPainted method is used to disable the focus rectangle around the text on click or hover.
+ */
     private JButton createStyledButton(String text, Color bg) {
         JButton btn = new JButton(text);
         btn.setBackground(bg);
@@ -206,6 +243,9 @@ public class EventScheduler extends JFrame {
         return btn;
     }
 
+/**
+ *   This function adds a new event to the list based on the input fields.
+ */
     private void addEvent(JTextField titleField, JTextField dateField, JTextField timeField,
                          JTextField locationField, JComboBox<String> categoryBox, JCheckBox reminderBox) {
         try {
@@ -236,6 +276,9 @@ public class EventScheduler extends JFrame {
         }
     }
 
+/**
+ *  This function clears the input fields after an event is added.
+ */
     private void clearFields(JTextField titleField, JTextField dateField, JTextField timeField,
                            JTextField locationField, JCheckBox reminderBox) {
         titleField.setText("");
@@ -245,6 +288,11 @@ public class EventScheduler extends JFrame {
         reminderBox.setSelected(false);
     }
 
+/**
+ *  This function deletes the selected event from the table.
+ *  It checks if a row is selected, removes the event from the list, saves the updated list to the file,
+ *  refreshes the table, and shows a confirmation message.
+ */
     private void deleteSelected() {
         int row = table.getSelectedRow();
         if (row >= 0) {
@@ -257,6 +305,10 @@ public class EventScheduler extends JFrame {
         }
     }
 
+/**
+ *  This function searches for events based on the query entered in the search field.
+ *  It filters the events list and updates the table model with matching events.
+ */
     private void searchEvents(String query) {
         if (query.trim().isEmpty()) { 
             refreshTable(); 
@@ -272,6 +324,10 @@ public class EventScheduler extends JFrame {
         }
     }
 
+/**
+ *  This function refreshes the table by clearing the existing rows and sorting the events list based on date and time.
+ *  It then adds each event to the table model as a new row.
+ */
     private void refreshTable() {
         model.setRowCount(0);
         Collections.sort(events, new Comparator<Event>() {
@@ -284,12 +340,24 @@ public class EventScheduler extends JFrame {
         }
     }
 
+/**
+ *  This function saves the list of events to a file using ObjectOutputStream.
+ */
     private void saveEvents() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE))) {
             oos.writeObject(events);
         } catch (IOException ignored) {}
     }
 
+/**
+ *   This function loads the list of events from a file using ObjectInputStream.
+ *   It attempts to read the file and deserialize the list of events.
+  
+ * SupressWarnings("unchecked") is used to suppress warnings about unchecked type casting,
+ * as the ObjectInputStream reads the data as a raw Object type and we cast it to List<Event>.
+ * This is necessary because Java's generics do not retain type information at runtime,
+ * so we cannot directly read a List<Event> without casting.
+ */
     @SuppressWarnings("unchecked")
     private void loadEvents() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE))) {
@@ -297,6 +365,9 @@ public class EventScheduler extends JFrame {
         } catch (Exception ignored) {}
     }
 
+/**
+ *  This function starts a timer that checks for reminders every 30 seconds.
+ */
     private void startReminderService() {
         reminderTimer = new javax.swing.Timer(30000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -306,6 +377,11 @@ public class EventScheduler extends JFrame {
         reminderTimer.start();
     }
 
+/**
+ *  This function checks the list of events for any reminders that are due at the current time.
+ *  It compares the current time with the event's dateTime and shows a reminder dialog if
+ *  the reminder is enabled and the event's dateTime matches the current time.
+ */
     private void checkReminders() {
         LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
         for (Event event : events) {
@@ -315,6 +391,11 @@ public class EventScheduler extends JFrame {
         }
     }
 
+/**
+ *  This function shows a reminder dialog for the specified event.
+ *  It uses SwingUtilities.invokeLater to ensure that the dialog is shown on the Event Dispatch Thread (EDT),
+ *  which is necessary for thread safety in Swing applications.
+ */
     private void showReminder(Event event) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -328,6 +409,12 @@ public class EventScheduler extends JFrame {
         });
     }
 
+
+/**
+ * As swing is not thread safe , we use SwingUtilities.invokeLater to ensure that the GUI is created on the Event Dispatch Thread (EDT).
+ * EDT is the thread responsible for handling all GUI-related tasks in Swing applications.
+ * This is important to avoid potential threading issues when updating the GUI.
+ */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
