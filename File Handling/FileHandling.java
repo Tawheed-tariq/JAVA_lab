@@ -45,11 +45,6 @@ class FirstPart{
             }
         }
 
-/**
- * Instead of writing directly to file on every write() used by FileWriter,
- * BufferedWriter is used to write text to the file in a buffered manner.
- * BufferedWriter first writes to an internal buffer and then writes to the file in larger chunks,
- */
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file));

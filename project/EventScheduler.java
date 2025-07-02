@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /*
  * Serializable Interface: It has no methods, but it allows the class to be serialized.
@@ -348,13 +347,7 @@ public class EventScheduler extends JFrame {
 /**
  *   This function loads the list of events from a file using ObjectInputStream.
  *   It attempts to read the file and deserialize the list of events.
-  
- * SupressWarnings("unchecked") is used to suppress warnings about unchecked type casting,
- * as the ObjectInputStream reads the data as a raw Object type and we cast it to List<Event>.
- * This is necessary because Java's generics do not retain type information at runtime,
- * so we cannot directly read a List<Event> without casting.
- */
-    @SuppressWarnings("unchecked")
+*/
     private void loadEvents() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE))) {
             events = (List<Event>) ois.readObject();
